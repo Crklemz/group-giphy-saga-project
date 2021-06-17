@@ -12,6 +12,18 @@ function* rootSaga() {
 
 }
 
+
+function* getFavorites() {
+  try {
+    const response = yield axios.get('/api/favorite')
+    console.log(response.data);
+
+  } catch (error) {
+    
+  }
+}
+
+
 const search = (state = {}, action) => {
     return state;
 }
