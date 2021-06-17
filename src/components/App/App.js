@@ -2,7 +2,8 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import Search from '../Search/Search'
+import Search from '../Search/Search';
+import {Route, HashRouter as Router} from 'react-router-dom';
 
 function App(props) {
 
@@ -16,7 +17,9 @@ function App(props) {
     axios.get('/search')
     .then(response => {
       console.log(response.data);
-      let data = response.data.data.url
+      let data = response.data.data.images.downsized
+      console.log(data);
+      
       dispatch({
         type: 'SEARCH_GIF',
         payload: data,
@@ -28,17 +31,16 @@ function App(props) {
 
 
   return (
-
+    <Router>
     <div>
+      <Route url="/" exact>
       <h1>Giphy Search!</h1>
-
-      <button onClick={handleClick}>Refresh Gif</button>
-    
-      <iframe src={search} />
       <Search />
+      <img src={search} />
+      </Route>
 
     </div>
-
+    </Router>
   );
 }
 
