@@ -9,10 +9,12 @@ function Search () {
 
     const [newSearch, setNewSearch] = useState('')
 
+    const dispatch = useDispatch();
+
     const handleSearchChange = (event) => {
         console.log(newSearch);
         //Similar to in redux -- we dont want to get rid of the id field when we update name
-        setNewSearch( event.target.value)
+        setNewSearch(event.target.value)
     }
 
     const submitSearch = event => {
@@ -24,7 +26,7 @@ function Search () {
 console.log(newSearch)
     return(
             <> 
-            <FormControl  onSubmit={submitSearch}>
+            <form  onSubmit={submitSearch}>
                 <TextField onChange={handleSearchChange} value={newSearch} id="outlined-basic" label="search" variant="outlined" />
                 <Select 
                 defaultValue="" 
@@ -37,14 +39,14 @@ console.log(newSearch)
                 <MenuItem value={'meme'}>meme</MenuItem>
                 </Select>
                 <Button
-               
+                    type="submit"
                     variant="contained"
                     color="secondary"
                      >
                     Search
                   </Button>
                 
-            </FormControl>
+            </form>
             
             </>
 
