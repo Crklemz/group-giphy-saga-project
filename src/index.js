@@ -12,12 +12,17 @@ function* rootSaga() {
 
 }
 
+const search = (state = {}, action) => {
+    return state;
+}
+
 const sagaMiddleware = createSagaMiddleware(); 
-sagaMiddleware.run(rootSaga);
 
 const store = createStore(
-    combineReducers({  }),
+    combineReducers({ search }),
     applyMiddleware(sagaMiddleware, logger),
   );
 
-  ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('react-root'));
+  sagaMiddleware.run(rootSaga);
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
