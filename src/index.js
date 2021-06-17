@@ -32,8 +32,14 @@ const favoritesList = (state = [], action) => {
   }
 };
 
+
+//reducer for searching
 const search = (state = {}, action) => {
+    if(action.type === 'SEARCH_GIF') {
+        return action.payload;
+    }
     return state;
+
 }
 
 const sagaMiddleware = createSagaMiddleware(); 
