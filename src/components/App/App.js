@@ -31,7 +31,6 @@ function App(props) {
 
     <div>
       <h1>Giphy Search!</h1>
-
       <button onClick={handleClick}>Refresh Gif</button>
     
       <iframe src={search} />
