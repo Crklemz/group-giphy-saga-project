@@ -9,8 +9,29 @@ import {takeEvery, put} from 'redux-saga/effects';
 import axios from 'axios';
 
 function* rootSaga() {
-
+  yield takeEvery('GET_FAVORITES', fetchFavorites)
 }
+
+function* fetchFavorites() {
+  try {
+    const response = yield axios.get('/api/favorite')
+    console.log(response.data);
+    yield put ({type: 'ADD_FAVORITE', payload: response.data})
+    
+  } catch (error) {
+    console.error('error in fetch Favorites', error)
+  }
+}
+
+const favoritesList = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_FAVORITE':
+      return action.payload
+    default:
+      return state;
+  }
+};
+
 
 //reducer for searching
 const search = (state = {}, action) => {
@@ -18,12 +39,13 @@ const search = (state = {}, action) => {
         return action.payload;
     }
     return state;
+
 }
 
 const sagaMiddleware = createSagaMiddleware(); 
 
 const store = createStore(
-    combineReducers({ search }),
+    combineReducers({ search, favoritesList }),
     applyMiddleware(sagaMiddleware, logger),
   );
 

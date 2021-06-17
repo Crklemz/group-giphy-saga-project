@@ -1,11 +1,18 @@
 const express = require('express');
 const pool = require('../modules/pool');
 
+
 const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  res.sendStatus(200);
+  const queryText = '';
+  pool.query(queryText)
+    .then((result) => {res.send(result.rows); })
+    .catch((err) => {
+      console.log('Error completing get request to the Database', err);
+      res.sendStatus(200);
+    })
 });
 
 // add a new favorite
