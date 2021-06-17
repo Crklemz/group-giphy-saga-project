@@ -10,6 +10,7 @@ import axios from 'axios';
 
 function* rootSaga() {
   yield takeEvery('GET_FAVORITES', fetchFavorites)
+
 }
 
 function* fetchFavorites() {
