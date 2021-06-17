@@ -6,7 +6,7 @@ const axios = require('axios');
 
 router.get('/', (req, res) => {
     // proxy api
-    axios.get(`http://api.giphy.com/v1/gifs/search?q=dog&api_key=${process.env.GIPHY_API_KEY}&LIMIT=5`)
+    axios.get(`http://api.giphy.com/v1/gifs/search?q=${newSearch}&api_key=${process.env.GIPHY_API_KEY}&LIMIT=5`)
     .then(response => {
         console.log(response.data);
         res.send(response.data);
