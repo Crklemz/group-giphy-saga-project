@@ -2,7 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-
+import Search from '../Search/Search'
 
 function App(props) {
 
@@ -28,14 +28,17 @@ function App(props) {
 
 
   return (
+
     <div>
       <h1>Giphy Search!</h1>
 
       <button onClick={handleClick}>Refresh Gif</button>
     
       <iframe src={search} />
-      
+      <Search />
+
     </div>
+
   );
 }
 
