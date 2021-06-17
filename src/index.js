@@ -12,8 +12,8 @@ function* rootSaga() {
 
 }
 
-const search = (state = {}, action) => {
-    return state;
+const search = (state ={}, action) => {
+    return action.payload;
 }
 
 const sagaMiddleware = createSagaMiddleware(); 
