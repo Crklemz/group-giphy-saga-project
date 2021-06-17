@@ -7,27 +7,27 @@ import {Route, HashRouter as Router} from 'react-router-dom';
 
 function App(props) {
 
-  const search = useSelector(store => store.search);
 
 
 
-  const dispatch = useDispatch();
 
-  const handleClick = () => {
-    axios.get('/search')
-    .then(response => {
-      console.log(response.data);
-      let data = response.data.data.images.downsized
-      console.log(data);
+  // const dispatch = useDispatch();
+
+  // const handleClick = () => {
+  //   axios.get('/search')
+  //   .then(response => {
+  //     console.log(response.data);
+  //     let data = response.data.data.images.downsized
+  //     console.log(data);
       
-      dispatch({
-        type: 'SEARCH_GIF',
-        payload: data,
-      })
-    }).catch(error => {
-      console.error(error);
-    })
-  }
+  //     dispatch({
+  //       type: 'SEARCH_GIF',
+  //       payload: data,
+  //     })
+  //   }).catch(error => {
+  //     console.error(error);
+  //   })
+  // }
 
 
   return (
@@ -36,7 +36,7 @@ function App(props) {
       <Route url="/" exact>
       <h1>Giphy Search!</h1>
       <Search />
-      <img src={search} />
+
       </Route>
 
     </div>

@@ -10,7 +10,7 @@ import axios from 'axios';
 
 function* rootSaga() {
   yield takeEvery('GET_FAVORITES', fetchFavorites)
-
+    yield takeEvery('LOOKUP_GIF', searchGif)
 }
 
 function* fetchFavorites() {
@@ -33,11 +33,21 @@ const favoritesList = (state = [], action) => {
   }
 };
 
+function* searchGif (action) {
+    console.log('in searchGif, action.payload-->', action.payload)
+    try{
+        const response = yield axios.get(`/search?q=${action.payload}`)
+        console.log('searchGif response.data --> ', response.data);
+        yield put({type: 'SEARCH_GIF', payload: response.data})
+    }catch (error) {
+        console.log('error in searchGif', error);
+    }
+}
 
 //reducer for searching
-const search = (state = {}, action) => {
+const search = (state = [], action) => {
     if(action.type === 'SEARCH_GIF') {
-        return action.payload;
+        return action.payload.data;
     }
     return state;
 

@@ -5,9 +5,14 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import {useSelector} from 'react-redux'
+import { Gif } from '@material-ui/icons';
+
 function Search () {
 
     const [newSearch, setNewSearch] = useState('')
+
+    const search = useSelector (store => store.search);
 
     const dispatch = useDispatch();
 
@@ -19,7 +24,7 @@ function Search () {
 
     const submitSearch = event => {
         event.preventDefault();
-        dispatch({ type: 'SEARCH_GIF', payload: newSearch });
+        dispatch({ type: 'LOOKUP_GIF', payload: newSearch });
         //updates the next plant to have a new id
         setNewSearch('');
     }
@@ -47,7 +52,13 @@ console.log(newSearch)
                   </Button>
                 
             </form>
-            
+            <ul>
+                {search.map((gif) => {
+                    return(
+                        <li key={gif.id}><img src={gif.images.original.url}></img></li>
+                    )
+                })}
+            </ul>
             </>
 
     )
