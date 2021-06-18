@@ -56,7 +56,7 @@ You are given two router modules on the server with stubs for the routes you may
 - `PUT /api/favorite` (incomplete)
     - For setting a category on an image. It expects both a query parameter and a data body. Feel free to change it as needed.
 
-
+<!--  -->
 ## Stretch Features
 
 1. Allow favorites to be removed/unfavorited
