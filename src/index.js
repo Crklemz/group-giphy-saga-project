@@ -8,6 +8,7 @@ import createSagaMiddleware from 'redux-saga';
 import {takeEvery, put} from 'redux-saga/effects';
 import axios from 'axios';
 
+//root saga
 function* rootSaga() {
   yield takeEvery('GET_FAVORITES', fetchFavorites)
     yield takeEvery('LOOKUP_GIF', searchGif)
