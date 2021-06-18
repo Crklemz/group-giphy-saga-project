@@ -11,6 +11,17 @@ import axios from 'axios';
 function* rootSaga() {
   yield takeEvery('GET_FAVORITES', fetchFavorites)
     yield takeEvery('LOOKUP_GIF', searchGif)
+    yield takeEvery('POST_GIF', postFavorite)
+}
+
+function* postFavorite() {
+    try{
+        const response = yield axios.post('/api/favorites')
+        console.log(response.data);
+        yield put ({type: 'ADD_FAVORITE', payload: response.data})
+    } catch (error) {
+        console.log('error in postFavorites generator -->', error);
+    }
 }
 
 function* fetchFavorites() {
