@@ -8,15 +8,16 @@ import createSagaMiddleware from 'redux-saga';
 import {takeEvery, put} from 'redux-saga/effects';
 import axios from 'axios';
 
+//root saga
 function* rootSaga() {
   yield takeEvery('GET_FAVORITES', fetchFavorites)
     yield takeEvery('LOOKUP_GIF', searchGif)
     yield takeEvery('POST_GIF', postFavorite)
 }
 
-function* postFavorite() {
+function* postFavorite(action) {
     try{
-        const response = yield axios.post('/api/favorites')
+        const response = yield axios.post('/api/favorite', action.payload)
         console.log(response.data);
         yield put ({type: 'ADD_FAVORITE', payload: response.data})
     } catch (error) {

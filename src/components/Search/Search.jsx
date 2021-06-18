@@ -12,9 +12,9 @@ function Search() {
 
     const [newSearch, setNewSearch] = useState('');
     const [newGifId, setNewGifId] = useState('');
-    const [newGifUrl, setNewGifUrl] = useState('');
+ 
 
-    const fav = {newGifId, newGifUrl};
+    // const fav = {newGifId, newGifUrl};
 
     const search = useSelector(store => store.search);
 
@@ -33,21 +33,13 @@ function Search() {
         setNewSearch('');
     }
 
-    
+    const setURL = (url) => {
+        
+        
+        dispatch({ type: 'POST_GIF', payload: {category_id: newGifId, url: url}})
 
-    const postGif = (event) => {
-        event.preventDefault();
-        setNewGifUrl(event.target.src)
-        console.log('NEWGIF',newGifUrl);
-
-        // setNewGifUrl(event.target.images.original.url)
-        dispatch({ type: 'POST_GIF', payload: {category_id: newGifId, url: newGifUrl}})
     }
-
-    // const handleUrl = (event) => {
-    //     setNewGifUrl(event.target.src)
-    // }
-    console.log('NEWGIF',newGifUrl);
+    
 
     return (
         <>
@@ -79,7 +71,7 @@ function Search() {
                     return (
                         <form>
                         <li key={gif.id}>
-                            <img src={gif.images.original.url} onClick={(event) => postGif}>
+                            <img src={gif.images.original.url} onClick={event => setURL(event.target.src)}>
                             </img>
                             
                 
@@ -92,7 +84,7 @@ function Search() {
                                 <option id="meme" value="5">MEME</option>
 
                             </select>
-                            
+                           
                         </li>
                         </form>
                     )

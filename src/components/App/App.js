@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Search from '../Search/Search';
 import {Route, HashRouter as Router} from 'react-router-dom';
+import Favorites from '../Favorites/Favorites';
+import Navbar from '../Navbar/Navbar';
 
 function App(props) {
 
@@ -33,10 +35,15 @@ function App(props) {
   return (
     <Router>
     <div>
-      <Route url="/" exact>
+      <Navbar />
+      <Route path="/" exact>
       <h1>Giphy Search!</h1>
-      <Search />
+        <Search />
+      </Route>
 
+      <Route path="/favorites" >
+      <h1>Giphy Favorites!</h1>
+        <Favorites />
       </Route>
 
     </div>
